@@ -1,0 +1,15 @@
+{
+   
+   "repository": "IngextCommunity",
+   "group": "System",
+   "gitPath": "parsers/code/Plugin_Passthrough.js",
+   "name": "Plugin_Passthrough",
+   "type": "fpl_processor",
+   "channel": "",
+   "description": "Template: Default system plugin event passthrough",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2024-03-20T21:36:06.687805981Z",
+   "updatedOn": "2024-04-30T00:00:00Z"
+}
+

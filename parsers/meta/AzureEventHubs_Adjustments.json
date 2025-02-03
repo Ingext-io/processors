@@ -1,0 +1,15 @@
+{
+   
+   "repository": "IngextCommunity",
+   "group": "System",
+   "gitPath": "parsers/code/AzureEventHubs_Adjustments.js",
+   "name": "AzureEventHubs_Adjustments",
+   "type": "fpl_processor",
+   "channel": "",
+   "description": "Standard: Azure EventHubs data adjustments",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2024-03-20T21:36:06.687805981Z",
+   "updatedOn": "2024-04-30T00:00:00Z"
+}
+

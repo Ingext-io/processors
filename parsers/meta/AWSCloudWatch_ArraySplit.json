@@ -1,0 +1,12 @@
+{
+   "group": "AWS",
+   "gitPath": "parsers/code/AWSCloudWatch_ArraySplit.js",
+   "name": "AWSCloudWatch_ArraySplit",
+   "type": "fpl_receiver",
+   "channel": "",
+   "description": "Standard: Split array (obj.logEvents) into individual items",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2025-04-10T18:30:17.504092269Z",
+   "updatedOn": "2025-04-10T18:30:17.504092269Z"
+}

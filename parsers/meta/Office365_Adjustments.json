@@ -1,0 +1,13 @@
+{
+   "repository": "IngextCommunity",
+   "group": "Office365",
+   "gitPath": "parsers/code/Office365_Adjustments.js",
+   "name": "Office365_Adjustments",
+   "type": "fpl_processor",
+   "channel": "",
+   "description": "Standard: Office365 integration event adjustments",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2024-04-30T02:42:55.482022211Z",
+   "updatedOn": "2024-04-30T17:51:11.908122558Z"
+}

@@ -1,0 +1,13 @@
+{
+   "repository": "IngextCommunity",
+   "group": "AWS",
+   "gitPath": "parsers/code/AWSCloudTrail_Adjustments.js",
+   "name": "AWSCloudTrail_Adjustments",
+   "type": "fpl_processor",
+   "channel": "",
+   "description": "Standard: AWS CloudTrail integration event adjustments",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2024-05-07T17:10:07.213194748Z",
+   "updatedOn": "2024-05-07T17:11:01.575561074Z"
+}

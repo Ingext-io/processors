@@ -1,0 +1,12 @@
+{
+   "group": "AWS",
+   "gitPath": "parsers/code/AWSCloudWatch_Flowlog.js",
+   "name": "AWSCloudWatch_Flowlog",
+   "type": "fpl_processor",
+   "channel": "",
+   "description": "Standard: Flowlogs from AWS CloudWatch integration",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2025-04-11T03:13:12.753139613Z",
+   "updatedOn": "2025-04-11T03:13:12.753139613Z"
+}

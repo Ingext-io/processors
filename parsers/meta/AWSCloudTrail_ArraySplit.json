@@ -1,0 +1,13 @@
+{
+   "repository": "IngextCommunity",
+   "group": "AWS",
+   "gitPath": "parsers/code/AWSCloudTrail_ArraySplit.js",
+   "name": "AWSCloudTrail_ArraySplit",
+   "type": "fpl_receiver",
+   "channel": "",
+   "description": "Standard: Split array (obj.Records) into individual items",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2024-05-07T20:41:12.606940208Z",
+   "updatedOn": "2024-05-07T20:41:12.606940208Z"
+}

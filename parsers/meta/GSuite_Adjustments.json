@@ -1,0 +1,13 @@
+{
+   "repository": "IngextCommunity",
+   "group": "GSuites",
+   "gitPath": "fplProcessors/code/GSuite_Adjustments.js",
+   "name": "GSuite_Adjustments",
+   "type": "fpl_processor",
+   "channel": "",
+   "description": "Standard: GSuite (Google Workspace) integration event adjustments",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2024-04-30T19:24:18.13318425Z",
+   "updatedOn": "2024-04-30T19:35:25.18817973Z"
+}

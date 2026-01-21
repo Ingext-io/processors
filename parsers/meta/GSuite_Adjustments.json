@@ -1,7 +1,7 @@
 {
    "repository": "IngextCommunity",
    "group": "GSuites",
-   "gitPath": "fplProcessors/code/GSuite_Adjustments.js",
+   "gitPath": "parsers/code/GSuite_Adjustments.js",
    "name": "GSuite_Adjustments",
    "type": "fpl_processor",
    "channel": "",

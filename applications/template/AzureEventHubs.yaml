@@ -1,0 +1,104 @@
+---
+apiVersion: application.ingext.io/v1
+kind: AppConfig
+metadata:
+  name: AzureEventHubs
+spec:
+  icon: "https://fluency-public.s3.us-east-1.amazonaws.com/icons/azure-eventhub.png"
+  category: cloud
+  resourceGroups:
+    - AzureEventHubs
+  description: "Connector to Azure Event Hubs"
+  displayName: "Azure Event Hubs"
+  parameters:
+    - name: endpoint
+      description: "Event Hub endpoint"
+      dataType: string
+      sensitive: true
+    - name: description
+      description: "Endpoint description"
+      dataType: string
+      defaultValue: ""
+    - name: storageEndpoint
+      description: "connection string to access the storage account container"
+      dataType: string
+      sensitive: true
+    - name: containerName
+      description: "blob storage container for eventhub checkpoints"
+      dataType: string
+    - name: consumerGroup
+      description: "consumer group name"
+      dataType: string
+      defaultValue: ""
+    - name: datalake
+      description: "datalake"
+      dataType: string
+      defaultValue: "managed"
+    - name: index
+      description: "datalake index name"
+      dataType: string
+      defaultValue: "default"
+---
+apiVersion: application.ingext.io/v1
+kind: Router
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  threadCount: 1
+---
+apiVersion: application.ingext.io/v1
+kind: Pipe
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  name: main
+  processors:
+    - Azure-EventHubs-Adjustments
+  sinks:
+    - "{{ .Application }}-{{ .AppInstance }}"
+  router: "{{ .Application }}-{{ .AppInstance }}"
+---
+apiVersion: application.ingext.io/v1
+kind: Processor
+metadata:
+  name: Azure-EventHubs-Adjustments
+spec:
+  type: parser
+  local: AzureEventHubs_Adjustments
+---
+apiVersion: application.ingext.io/v1
+kind: DataSource
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  type: plugin
+  format: json
+  router: "{{ .Application }}-{{ .AppInstance }}"
+  config:
+    plugin:
+      integration: "{{ .Application }}-{{ .AppInstance }}"
+---
+apiVersion: application.ingext.io/v1
+kind: Integration
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  type: AzureEventHubs
+  config:
+    description: "{{ .UserInput.description }}"
+    containerName: "{{ .UserInput.containerName }}"
+    consumerGroup: "{{ .UserInput.consumerGroup }}"
+  secret:
+    endpoint: "{{ .UserInput.endpoint }}"
+    storageEndpoint: "{{ .UserInput.storageEndpoint }}"
+---
+apiVersion: application.ingext.io/v1
+kind: DataSink
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  type: datalake
+  config:
+    datalake:
+      datalake: "{{ .UserInput.datalake }}"
+      index:  "{{ .UserInput.index }}"

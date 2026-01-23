@@ -1,0 +1,89 @@
+---
+apiVersion: application.ingext.io/v1
+kind: AppConfig
+metadata:
+  name: GSuite
+spec:
+  icon: "https://fluency-public.s3.us-east-1.amazonaws.com/icons/google.png"
+  category: office
+  resourceGroups:
+    - GSuites
+  description: "Google Workspace (G-Suite) audit events"
+  displayName: "Google Workspace"
+  parameters:
+    - name: adminUserEmail
+      description: "admin user email"
+      dataType: string
+    - name: serviceAccountKey
+      description: "Service Account json key"
+      dataType: string
+      sensitive: true
+    - name: datalake
+      description: "datalake"
+      dataType: string
+      defaultValue: "managed"
+    - name: index
+      description: "datalake index name"
+      dataType: string
+      defaultValue: "default"
+---
+apiVersion: application.ingext.io/v1
+kind: Router
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  threadCount: 1
+---
+apiVersion: application.ingext.io/v1
+kind: Pipe
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  name: main
+  processors:
+    - GSuite-Adjustments
+  sinks:
+    - "{{ .Application }}-{{ .AppInstance }}"
+  router: "{{ .Application }}-{{ .AppInstance }}"
+---
+apiVersion: application.ingext.io/v1
+kind: Processor
+metadata:
+  name: GSuite-Adjustments
+spec:
+  type: parser
+  local: GSuite_Adjustments
+---
+apiVersion: application.ingext.io/v1
+kind: DataSource
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  type: plugin
+  format: json
+  router: "{{ .Application }}-{{ .AppInstance }}"
+  config:
+    plugin:
+      integration: "{{ .Application }}-{{ .AppInstance }}"
+---
+apiVersion: application.ingext.io/v1
+kind: Integration
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  type: GSuite
+  config: 
+    adminUserEmail: "{{ .UserInput.adminUserEmail }}"
+  secret:
+    serviceAccountKey: {{ .UserInput.serviceAccountKey | quote }}
+---
+apiVersion: application.ingext.io/v1
+kind: DataSink
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  type: datalake
+  config:
+    datalake:
+      datalake: "{{ .UserInput.datalake }}"
+      index:  "{{ .UserInput.index }}"

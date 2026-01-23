@@ -1,0 +1,10 @@
+{
+   "repository": "IngextCommunity",
+   "group": "Azure",
+   "gitPath": "applications/template/AzureEventHubs.yaml",
+   "name": "AzureEventHubs",
+   "type": "template",
+   "description": "Azure EventHubs Event import",
+   "createdOn": "2025-05-07T17:10:07.213194748Z",
+   "updatedOn": "2025-05-07T17:11:01.575561074Z"
+}

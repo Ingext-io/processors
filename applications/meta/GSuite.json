@@ -1,0 +1,10 @@
+{
+   "repository": "IngextCommunity",
+   "group": "GSuite",
+   "gitPath": "applications/template/GSuite.yaml",
+   "name": "GSuite",
+   "type": "template",
+   "description": "Standard: GSuite (Google Workspace) event import",
+   "createdOn": "2024-04-30T19:24:18.13318425Z",
+   "updatedOn": "2024-04-30T19:35:25.18817973Z"
+}

@@ -1,7 +1,7 @@
 {
    "repository": "IngextCommunity",
    "group": "Office365",
-   "gitPath": "applications/template//Office365.yaml",
+   "gitPath": "applications/template/Office365.yaml",
    "name": "Office365",
    "type": "template",
    "description": "Standard: Office365 audit event import",

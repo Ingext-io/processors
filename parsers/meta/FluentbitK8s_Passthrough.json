@@ -1,0 +1,14 @@
+{
+   "repository": "IngextCommunity",
+   "group": "AWS",
+   "gitPath": "parsers/code/FluentbitK8s_Passthrough.js",
+   "name": "FluentbitK8s_Passthrough",
+   "type": "fpl_processor",
+   "channel": "",
+   "description": "K8s logs from Fluent bit agent",
+   "scriptLang": "",
+   "scriptText": "",
+   "createdOn": "2024-05-07T17:10:07.213194748Z",
+   "updatedOn": "2024-05-07T17:11:01.575561074Z"
+}
+

@@ -64,7 +64,7 @@ spec:
     - name: index
       description: "datalake index name"
       dataType: string
-      defaultValue: "cloudtrail"
+      defaultValue: "default"
 ---
 apiVersion: application.ingext.io/v1
 kind: Router

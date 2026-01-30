@@ -1,0 +1,10 @@
+{
+   "repository": "IngextCommunity",
+   "group": "System",
+   "gitPath": "applications/template/HecPassthrough.yaml",
+   "name": "HecPassthrough",
+   "type": "template",
+   "description": "Standard: HEC event import",
+   "createdOn": "2024-04-30T02:42:55.482022211Z",
+   "updatedOn": "2024-04-30T17:51:11.908122558Z"
+}

@@ -1,0 +1,92 @@
+---
+apiVersion: application.ingext.io/v1
+kind: AppConfig
+metadata:
+  name: HecPassthrough
+spec:
+  icon: "https://fluency-public.s3.us-east-1.amazonaws.com/icons/splunk_hec.png"
+  category: endpoint
+  description: "HEC input and pass it through into the datalake"
+  displayName: "HEC Input Passthrough"
+  parameters:
+    - name: datalake
+      description: "datalake"
+      dataType: string
+      defaultValue: "managed"
+    - name: index
+      description: "datalake index name"
+      dataType: string
+      defaultValue: "default"
+  output:
+    - name: url
+      description: "HEC URL"
+      dataType: string
+      valueRef:
+        kind: DataSource
+        resource: "{{ .Application }}-{{ .AppInstance }}"
+        name: url
+    - name: token
+      description: "HEC Security Token"
+      dataType: string
+      valueRef:
+        kind: DataSource
+        resource: "{{ .Application }}-{{ .AppInstance }}"
+        name: token
+---
+apiVersion: application.ingext.io/v1
+kind: Router
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  threadCount: 1
+---
+apiVersion: application.ingext.io/v1
+kind: Pipe
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  name: main
+  processors:
+    - SystemPassthroughParser
+  sinks:
+    - "{{ .Application }}-{{ .AppInstance }}"
+  router: "{{ .Application }}-{{ .AppInstance }}"
+  priority: 1000
+---
+apiVersion: application.ingext.io/v1
+kind: Processor
+metadata:
+  name: SystemPassthroughParser
+spec:
+  type: parser
+  local: System_Simple_Passthrough
+---
+apiVersion: application.ingext.io/v1
+kind: DataSource
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  type: hec
+  format: json
+  router: "{{ .Application }}-{{ .AppInstance }}"
+  output:
+    - name: url
+      description: "HEC URL"
+      dataType: string
+    - name: token
+      description: "HEC Security Token"
+      dataType: string
+      sensitive: true
+  config:
+    hec:
+---
+apiVersion: application.ingext.io/v1
+kind: DataSink
+metadata:
+  name: "{{ .Application }}-{{ .AppInstance }}"
+spec:
+  type: datalake
+  config:
+    datalake:
+      datalake: "{{ .UserInput.datalake }}"
+      index:  "{{ .UserInput.index }}"

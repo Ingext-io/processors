@@ -1,0 +1,10 @@
+{
+   "repository": "IngextCommunity",
+   "group": "System",
+   "gitPath": "schemas/schema/lake_schema_event.json",
+   "name": "ingext default",
+   "type": "schema",
+   "description": "Default event schema",
+   "createdOn": "2025-05-07T17:10:07.213194748Z",
+   "updatedOn": "2025-05-07T17:11:01.575561074Z"
+}

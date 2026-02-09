@@ -1,0 +1,10 @@
+{
+   "repository": "IngextCommunity",
+   "group": "System",
+   "gitPath": "schemas/schema/lake_containerlogv2.json",
+   "name": "ContainerLogV2",
+   "type": "schema",
+   "description": "K8s log events exported by fluentbit",
+   "createdOn": "2025-05-07T17:10:07.213194748Z",
+   "updatedOn": "2025-05-07T17:11:01.575561074Z"
+}

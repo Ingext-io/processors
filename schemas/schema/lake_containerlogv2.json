@@ -1,22 +1,30 @@
 {
     "name": "ContainerLogV2",
 	"fields": [
-    { "name": "TimeGenerated", "fpltype": "int64", "type": "INT64", "convertedtype": "TIMESTAMP_MILLIS" },
+    { "name": "TimeGenerated", "type": "INT64", "convertedtype": "TIMESTAMP_MILLIS" },
+    { "name": "_Size", "type": "INT32", "nullable": true },
 
-    { "name": "Computer", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "ResourceId", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "SubscriptionId", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
 
-    { "name": "ContainerId", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
-    { "name": "ContainerName", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "LogId", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "_IsBillable", "type": "BOOLEAN", "nullable": true },
 
-    { "name": "PodName", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
-    { "name": "PodNamespace", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "_ResourceId", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
 
-    { "name": "LogSource", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
-    { "name": "LogLevel", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "Computer", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+
+    { "name": "ContainerId", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "ContainerName", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+
+    { "name": "PodName", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "PodNamespace", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+
+    { "name": "LogSource", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "LogLevel", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
 
     {
       "name": "LogMessage",
-      "fpltype": "string",
       "type": "BYTE_ARRAY",
       "convertedtype": "UTF8",
       "nullable": true,
@@ -24,17 +32,16 @@
     },
     {
       "name": "KubernetesMetadata",
-      "fpltype": "string",
       "type": "BYTE_ARRAY",
       "convertedtype": "UTF8",
       "nullable": true,
       "logical_hint": "kusto_dynamic_json"
     },
 
-    { "name": "TenantId", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "TenantId", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
 
-    { "name": "SourceSystem", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
-    { "name": "Type", "fpltype": "string", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true }
+    { "name": "SourceSystem", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true },
+    { "name": "Type", "type": "BYTE_ARRAY", "convertedtype": "UTF8", "nullable": true }
   ]
 }
 

@@ -1,0 +1,58 @@
+// Description:
+// Default Fluentbit K8s event passthrough
+
+// Data input format: ({ obj, size }) or ( doc )
+function main({ obj, size }) {
+   
+   let parquetJson = {}
+   if (obj.date) {
+     let t = new Time("2006-01-02T15:04:05.000000Z", obj.date)
+     parquetJson.TimeGenerated = t.UnixMilli()
+   } else {
+     let t = new Time()
+     parquetJson.TimeGenerated = t.UnixMilli()
+   }
+   if (obj.kubernetes) {
+     parquetJson.KubernetesMetadata = toString(obj.kubernetes)
+     parquetJson.Computer = obj.kubernetes.host
+     parquetJson.ContainerId = obj.kubernetes.docker_id
+     parquetJson.ContainerName = obj.kubernetes.container_name
+     parquetJson.PodNamespace = obj.kubernetes.namespace_name
+     parquetJson.PodName = obj.kubernetes.pod_name   
+   }  
+   
+   parquetJson.LogLevel = "UNKNOWN"
+
+   let {stream,flag,msg} = regexp(`^\S+\s+(?P<stream>stdout|stderr)\s+(?P<flag>\S)\s+(?P<msg>.*)$`, obj.log)
+   parquetJson.LogSource = stream
+   parquetJson.FluentbitFlag = flag
+   // the msg could be plain text or json encoded
+   if startsWith(msg, "{") && endsWith(msg, "}") {
+      //console.log(msg)
+      try {
+        let msgObj = parseJson(msg)
+        if msgObj.info {
+          parquetJson.LogLevel = msgObj.info
+        }
+        parquetJson.LogMessage=msg
+      } catch(e) {
+        // printf("%s: %s", e.name, e.message);
+        console.log("invalid message: ", msg)
+        parquetJson.LogMessage=toString({
+          msg: msg
+        })
+      }
+   } else {
+      // normalize the plaintext message to a json object.
+      parquetJson.LogMessage=toString({
+         msg: msg
+      })
+   }   
+   // console.log(parquetJson)    
+   return {status: "pass", output: {
+     obj: parquetJson
+   }}
+
+}
+
+

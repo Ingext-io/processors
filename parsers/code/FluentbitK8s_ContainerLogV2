@@ -47,11 +47,17 @@ function main({ obj, size }) {
       parquetJson.LogMessage=toString({
          msg: msg
       })
-   }   
-   // console.log(parquetJson)    
-   return {status: "pass", output: {
+   } 
+
+   Platform_Sink("", {
      obj: parquetJson
-   }}
+   })
+   return {status: "drop"}
+  
+   // console.log(parquetJson)    
+   //return {status: "pass", output: {
+   //  obj: parquetJson
+   //}}
 
 }
 
